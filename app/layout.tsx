@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
+        <nav className="pl-8">
           <h1>Jottable</h1>
         </nav>
         {children}
