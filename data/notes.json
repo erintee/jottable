@@ -1,0 +1,46 @@
+[
+    {
+        "id": "1",
+        "workspace": "Personal",
+        "title": "Grocery List",
+        "content": "Eggs, Milk, Bread, Butter",
+        "created_at": "2024-10-01T10:30:00Z",
+        "updated_at": "2024-10-01T10:45:00Z",
+        "tags": ["shopping", "chores"],
+        "is_favorite": true,
+        "color": "#FFCC00"
+    },
+    {
+        "id": "2",
+        "workspace": "Work",
+        "title": "Project Meeting Notes",
+        "content": "Discussed the new marketing strategy and budget allocation.",
+        "created_at": "2024-10-02T14:00:00Z",
+        "updated_at": "2024-10-02T14:30:00Z",
+        "tags": ["meetings", "project"],
+        "is_favorite": false,
+        "color": "#00CCFF"
+    },
+    {
+        "id": "3",
+        "workspace": "Personal",
+        "title": "Book Recommendations",
+        "content": "1. The Great Gatsby\n2. To Kill a Mockingbird\n3. 1984",
+        "created_at": "2024-10-05T08:00:00Z",
+        "updated_at": "2024-10-05T08:15:00Z",
+        "tags": ["books", "reading"],
+        "is_favorite": false,
+        "color": "#FF66CC"
+    },
+    {
+        "id": "4",
+        "workspace": "Work",
+        "title": "Client Feedback",
+        "content": "Received positive feedback on the latest project deliverables.",
+        "created_at": "2024-10-07T09:00:00Z",
+        "updated_at": "2024-10-07T09:30:00Z",
+        "tags": ["clients", "feedback"],
+        "is_favorite": true,
+        "color": "#66FF66"
+    }
+]
