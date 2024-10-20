@@ -1,24 +1,26 @@
 import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import EditorToolbar, { modules, formats } from "@/components/ui/text-editor/EditorToolbar"
+import './QuillToolbar.css';
+import QuillToolbar, { modules, formats } from "@/components/ui/text-editor/QuillToolbar"
 
-const NoteTextarea = () => {
+const TextEditor = () => {
     const [value, setValue] = useState('');
 
     return (
         <div>
-            <EditorToolbar/>
+            <QuillToolbar/>
             <ReactQuill 
                 theme="snow" 
-                className="mb-8" 
                 value={value} 
                 onChange={() => setValue(value)}
                 modules={modules}
-                formats={formats} 
+                formats={formats}
+                className='h-36'
             />
+            {/* </ReactQuill> */}
         </div>
     )
 }
 
-export default NoteTextarea
+export default TextEditor

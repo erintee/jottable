@@ -5,10 +5,9 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import NoteTextarea from "@/components/ui/text-editor/NoteTextarea";
+import TextEditor from "@/components/ui/text-editor/TextEditor";
 
 function AddNoteForm() {
     // const [value, setValue] = useState('');
@@ -19,17 +18,15 @@ function AddNoteForm() {
 
     return (
         <Card className='max-w-sm'>
-            <CardHeader>
-                <CardTitle>Create a note</CardTitle>
-            </CardHeader>
+            <CardHeader className='pb-2'>
+                <label className='text-sm text-gray-500'>Title</label>
+                <Input placeholder="Add a title" className='mb-4 text-sm placeholder:text-sm'></Input>            </CardHeader>
             <CardContent>
-                <label>Title</label>
-                <Input placeholder="Add a title"></Input>
-                <label>Content</label>
-                <NoteTextarea/>
+                <label className='text-sm text-gray-500'>Content</label>
+                <TextEditor/>
             </CardContent>
             <CardFooter>
-                <Button>Save</Button>
+                <Button className='text-sm'>Save</Button>
             </CardFooter>
         </Card>
     )
