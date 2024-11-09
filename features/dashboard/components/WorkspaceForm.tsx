@@ -1,24 +1,3 @@
-// import React from 'react'
-// import {
-//     Card,
-//     CardContent,
-//   } from "@/components/ui/card";
-// import { Button } from '@/components/ui/button';
-  
-//   const WorkspaceCard: React.FC = () => {
-//     return (
-//       <Card className='p-6 text-center'>
-//         {/* <Input placeholder='New Workspace' className='placeholder:text-2xl placeholder:text-muted-foreground text-black text-center text-2xl font-semibold leading-tight focus:outline-black'/> */}
-//         {/* <Input placeholder='Add a description'className='text-muted-foreground text-center italic text-sm focus:outline-black'/> */}
-//         <CardContent className='pt-4 pb-0'>
-//             <Button className=' text-3xl'>+</Button>
-//         </CardContent>
-//       </Card>
-//     );
-//   }
-  
-//   export default WorkspaceCard;
-
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"

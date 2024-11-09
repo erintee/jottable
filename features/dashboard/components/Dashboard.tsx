@@ -1,8 +1,3 @@
-// Jottable
-// Quick note button (opens AddNoteForm as modal)
-// -----
-// Workspaces in grid | Add workspace icon as last grid item
-
 import React from 'react';
 import WorkspaceCard from './WorkspaceCard';
 import { WorkspaceForm } from './WorkspaceForm';
