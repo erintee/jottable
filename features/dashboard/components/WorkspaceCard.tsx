@@ -17,7 +17,7 @@ import {
       <Card className='p-6 text-center'>
         <CardTitle>{workspace}</CardTitle>
         <CardDescription className='italic'>
-            {description && <p>{description}</p>}
+            {description && <span>{description}</span>}
         </CardDescription>
         <CardContent className='pt-4 pb-0'>
             {noteCount === 1 ? `${noteCount} note` : `${noteCount} notes`}

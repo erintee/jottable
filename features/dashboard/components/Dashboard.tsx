@@ -5,7 +5,7 @@
 
 import React from 'react';
 import WorkspaceCard from './WorkspaceCard';
-import AddWorkspaceCard from './AddWorkspaceCard';
+import { WorkspaceForm } from './WorkspaceForm';
 
 import data from '@/data/data.json';
 
@@ -37,7 +37,7 @@ function Dashboard() {
             noteCount={noteCount}
           />
         ))}
-        <AddWorkspaceCard/>
+        <WorkspaceForm/>
       </div>
     );
 }
