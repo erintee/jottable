@@ -21,7 +21,7 @@ const formSchema = z.object({
   description: z.string()
 })
 
-export function WorkspaceForm() {
+function WorkspaceForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -75,3 +75,5 @@ export function WorkspaceForm() {
     </Form>
   )
 }
+
+export default WorkspaceForm;

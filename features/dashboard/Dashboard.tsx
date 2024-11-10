@@ -1,6 +1,6 @@
 import React from 'react';
-import WorkspaceCard from './WorkspaceCard';
-import WorkspaceForm from './WorkspaceForm';
+import WorkspaceCard from './components/WorkspaceCard';
+import WorkspaceForm from './components/WorkspaceForm';
 
 import data from '@/data/data.json';
 

@@ -1,11 +1,17 @@
+"use client";
+
 import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './QuillToolbar.css';
 import QuillToolbar, { modules, formats } from "@/components/ui/text-editor/QuillToolbar"
 
-const TextEditor = () => {
-    const [value, setValue] = useState('');
+interface TextEditorProps {
+    value: string;
+    onChange: (value: string) => void;
+}
+
+const TextEditor: React.FC<TextEditorProps> = ({ value, onChange }) => {
 
     return (
         <div>
@@ -13,7 +19,7 @@ const TextEditor = () => {
             <ReactQuill 
                 theme="snow" 
                 value={value} 
-                onChange={() => setValue(value)}
+                onChange={onChange}
                 modules={modules}
                 formats={formats}
                 className='h-36'

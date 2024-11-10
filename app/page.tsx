@@ -1,7 +1,6 @@
 'use client';
 
-import Dashboard from "@/features/dashboard/components/Dashboard";
-import AddNoteForm from "@/features/notes/components/AddNoteForm";
+import Dashboard from "@/features/dashboard/Dashboard";
 
 export default function Home() {
 
