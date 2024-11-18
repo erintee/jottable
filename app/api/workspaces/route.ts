@@ -6,22 +6,20 @@ const dataFilePath = path.join(process.cwd(), "data", "data.json");
 
 export async function POST(request: Request) {
   try {
+    //TEST
     const body = await request.json();
+    console.log("body:", body);
 
-    // Read the existing data
     const data = JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
 
-    // Generate a new ID for the workspace
     const newId = (data.workspaces.length + 1).toString();
 
-    // Create a new workspace object
     const newWorkspace = {
       id: newId,
       name: body.title,
-      description: body.description,
+      description: body.description || "",
     };
 
-    // Add the new workspace to the existing array
     data.workspaces.push(newWorkspace);
 
     // Write the updated data back to the file
