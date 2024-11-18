@@ -18,16 +18,6 @@
     {
       "id": "4",
       "name": "Friends"
-    },
-    {
-      "id": "5",
-      "name": "Test",
-      "description": ""
-    },
-    {
-      "id": "6",
-      "name": "Test 2",
-      "description": "Test 2"
     }
   ],
   "notes": [
@@ -86,6 +76,17 @@
       ],
       "is_favorite": true,
       "color": "#66FF66"
+    },
+    {
+      "id": "5",
+      "workspaceId": "4",
+      "title": "Test",
+      "content": "<p>This is a test</p>",
+      "created_at": "2024-11-18T19:28:24.729Z",
+      "updated_at": "2024-11-18T19:28:24.729Z",
+      "tags": [],
+      "is_favorite": false,
+      "color": ""
     }
   ]
 }

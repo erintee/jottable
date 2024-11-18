@@ -1,12 +1,6 @@
 "use client"
 
 import React, { useState } from 'react';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import TextEditor from "@/components/ui/text-editor/TextEditor";
 import {
@@ -20,11 +14,7 @@ import {
 import { Button } from "@/components/ui/button"
 
 function AddNoteForm() {
-    // const [value, setValue] = useState('');
 
-    // const changeValue = (newValue: string) => {
-    //     setValue(newValue);
-    // }
 
     return (
         <Dialog>

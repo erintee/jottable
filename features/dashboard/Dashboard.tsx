@@ -18,7 +18,7 @@ function Dashboard() {
     const workspacesWithCounts = workspaces.map((workspace) => ({
       id: workspace.id,
       name: workspace.name,
-      description: workspace.description,
+      description: workspace.description || "",
       noteCount: noteCountMap[workspace.id] || 0, // Get count or 0 if no notes
     }));
   

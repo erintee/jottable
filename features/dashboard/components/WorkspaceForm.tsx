@@ -33,9 +33,6 @@ function WorkspaceForm() {
 // Submit handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      //TEST
-      console.log("Form values:", values);
-
       const title = values.title?.trim() || "Untitled Workspace";
 
       const response = await fetch("/api/workspaces", {

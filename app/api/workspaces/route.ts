@@ -6,12 +6,10 @@ const dataFilePath = path.join(process.cwd(), "data", "data.json");
 
 export async function POST(request: Request) {
   try {
-    //TEST
     const body = await request.json();
-    console.log("body:", body);
-
     const data = JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
-
+    
+    //TO DO: Implement id generation
     const newId = (data.workspaces.length + 1).toString();
 
     const newWorkspace = {

@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -47,6 +48,8 @@ const formSchema = z.object({
 });
 
 function QuickNote() {
+  const [open, setOpen] = useState(false);
+
   const { workspaces } = data;
 
   // Initialize the form
@@ -59,16 +62,39 @@ function QuickNote() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const noteData = {
-      ...values,
-      title: values.title?.trim() || "Untitled Note",
-    };
-    console.log(noteData);
+  // Submit handler
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const title = values.title?.trim() || "Untitled Note";
+
+      const response = await fetch("/api/notes", {
+        method: "POST",
+        headers: {
+          "Conttent-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          content: values.content,
+          workspaceId: values.workspace,
+        }),
+      });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Note added:", data.note);
+      form.reset();
+      setOpen(false);
+
+    } else {
+      console.error("Failed to add note");
+    }
+    } catch (error) {
+      console.error("Error submitting QuickNote form:", error);
+    }
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-300 bg-neutral-900 text-neutral-50 hover:bg-neutral-900/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90 h-10 px-4 py-2">
         + Quick Note
       </DialogTrigger>
@@ -132,7 +158,7 @@ function QuickNote() {
                     </SelectTrigger>
                     <SelectContent>
                       {workspaces.map((workspace) => (
-                        <SelectItem key={workspace.id} value={workspace.name}>
+                        <SelectItem key={workspace.id} value={workspace.id}>
                           {workspace.name}
                         </SelectItem>
                       ))}
