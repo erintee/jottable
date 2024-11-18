@@ -17,22 +17,46 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-  title: z.string(),
-  description: z.string()
+  title: z.string().optional(),
+  description: z.string().optional(),
 })
 
 function WorkspaceForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title:"New Workspace",
+      title:"",
       description:""
     },
   })
  
-  // TODO: submit handler
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+// Submit handler
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const title = values.title?.trim() || "Untitled Workspace";
+
+      const response = await fetch("/api/workspaces", {
+        method: "POST",
+        headers: {
+          "Conttent-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          desctription: values.description,
+        }),
+      });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Workspace added:", data.workspace);
+      form.reset();
+    } else {
+      console.error("Failed to add workspace");
+    }
+
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   }
 
   return (
@@ -45,7 +69,10 @@ function WorkspaceForm() {
             <FormItem className="text-center">
               <FormLabel className="sr-only">Title</FormLabel>
               <FormControl className="font-semibold text-2xl">
-                <Input className='h-8 mt-1 text-center border-0' placeholder="New Workspace" {...field} />
+                <Input 
+                  className='h-8 mt-1 text-center border-0' 
+                  placeholder="New Workspace" {...field} 
+                />
               </FormControl>
               <FormDescription className="sr-only">
                 Name your workspace.
@@ -61,7 +88,10 @@ function WorkspaceForm() {
             <FormItem>
               <FormLabel className="sr-only">Description</FormLabel>
               <FormControl>
-                <Input className='h-6 mt-1 italic text-center border-0 text-muted-foreground' placeholder="Add a description" {...field} />
+                <Input 
+                  className='h-6 mt-1 italic text-center border-0 text-muted-foreground' 
+                  placeholder="Add a description" {...field} 
+                />
               </FormControl>
               <FormDescription className="sr-only">
                 Describe your workspace.
