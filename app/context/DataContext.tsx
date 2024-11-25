@@ -53,7 +53,6 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     try {
         const response = await fetch("/api/workspaces");
         const data = await response.json();
-        console.log("Data: ", data)
         setWorkspaces(data);
     } catch (error) {
         console.error("Error fetching workspaces:", error);
@@ -77,7 +76,8 @@ const addWorkspace = async (workspace: WorkspaceInput) => {
       throw new Error("Failed to add workspace");
     }
 
-    const savedWorkspace = await response.json();
+    const data = await response.json();
+    const savedWorkspace = data.workspace;
     setWorkspaces((prev) => [...prev, { ...savedWorkspace, noteCount: 0 }]);
     return { success: true, message: "Workspace added successfully" };
   } catch (error: any) {

@@ -18,7 +18,7 @@ import {
 import { Input } from "@/app/components/ui/input"
 
 const formSchema = z.object({
-  name: z.string().optional(),
+  name: z.string().min(1, { message: "Please name your workspace." }),
   description: z.string().optional(),
 })
 
@@ -37,7 +37,7 @@ function WorkspaceForm() {
   // Submit handler
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const result = addWorkspace({
-      name: values.name?.trim() || "Untitled Workspace",
+      name: values.name,
       description: values.description?.trim() || "",
     });
   
@@ -62,7 +62,7 @@ function WorkspaceForm() {
               <FormDescription className="sr-only">
                 Name your workspace.
               </FormDescription>
-              <FormMessage />
+              <FormMessage className="text-sm italic"/>
             </FormItem>
           )}
         />

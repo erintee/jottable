@@ -6,7 +6,6 @@ import dbConnect from "../../../utils/dbConnect";
 // GET Fetch all workspaces
 export async function GET() {
   try {
-    console.log("GET workspace endpoint")
     await dbConnect();
 
     // Perform aggregation to include noteCount
