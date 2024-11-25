@@ -37,16 +37,11 @@ const noteSchema = new Schema<NoteInterface>({
         type: String,
         required: true,
     },
-    createdAt: {
-        type: Date,  
-        required: true,
-    },
-    updatedAt: {
-        type: Date,
-        required: true,
-    },
-});
+},
+{ timestamps: true },
+);
 
-const Note = mongoose.model<NoteInterface>("Note", noteSchema);
+const Note = 
+    mongoose.models.Note || mongoose.model<NoteInterface>("Note", noteSchema);
 
 export default Note;

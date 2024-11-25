@@ -3,8 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useData } from "@/app/context/DataContext";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/app/components/ui/button"
 import {
   Form,
   FormControl,
@@ -13,61 +14,45 @@ import {
   FormLabel,
   FormDescription,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/app/components/ui/form"
+import { Input } from "@/app/components/ui/input"
 
 const formSchema = z.object({
-  title: z.string().optional(),
+  name: z.string().optional(),
   description: z.string().optional(),
 })
 
 function WorkspaceForm() {
+
+  const { addWorkspace } = useData();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title:"",
+      name:"",
       description:""
     },
   })
  
-// Submit handler
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const title = values.title?.trim() || "Untitled Workspace";
-
-      const response = await fetch("/api/workspaces", {
-        method: "POST",
-        headers: {
-          "Conttent-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          description: values.description,
-        }),
-      });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Workspace added:", data.workspace);
-      form.reset();
-    } else {
-      console.error("Failed to add workspace");
-    }
-
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
-  }
+  // Submit handler
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const result = addWorkspace({
+      name: values.name?.trim() || "Untitled Workspace",
+      description: values.description?.trim() || "",
+    });
+  
+  form.reset();
+  };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex-column gap-1 p-3 text-center border rounded-lg shadow-sm">
       <FormField
           control={form.control}
-          name="title"
+          name="name"
           render={({ field }) => (
             <FormItem className="text-center">
-              <FormLabel className="sr-only">Title</FormLabel>
+              <FormLabel className="sr-only">Name</FormLabel>
               <FormControl className="font-semibold text-2xl">
                 <Input 
                   className='h-8 mt-1 text-center border-0' 

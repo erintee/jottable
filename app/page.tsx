@@ -1,6 +1,6 @@
 'use client';
 
-import Dashboard from "@/features/dashboard/Dashboard";
+import Dashboard from "@/app/features/dashboard/Dashboard";
 
 export default function Home() {
 

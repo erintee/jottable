@@ -4,18 +4,18 @@ import {
     CardTitle,
     CardDescription,
     CardContent,
-  } from "@/components/ui/card";
+  } from "@/app/components/ui/card";
 
   interface WorkspaceCardProps {
-    workspace: string;
-    description: string;
+    name: string;
+    description: string | null;
     noteCount: number;
   }
   
-  const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ workspace, description, noteCount }) => {
+  const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ name, description, noteCount }) => {
     return (
       <Card className='p-6 text-center'>
-        <CardTitle>{workspace}</CardTitle>
+        <CardTitle>{name}</CardTitle>
         <CardDescription className='italic'>
             {description && <span>{description}</span>}
         </CardDescription>

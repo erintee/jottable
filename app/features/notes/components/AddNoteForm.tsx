@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Input } from "@/components/ui/input";
-import TextEditor from "@/components/ui/text-editor/TextEditor";
+import { Input } from "@/app/components/ui/input";
+import TextEditor from "@/app/components/ui/text-editor/TextEditor";
 import {
     Dialog,
     DialogContent,
@@ -10,8 +10,8 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button"
+  } from "@/app/components/ui/dialog";
+import { Button } from "@/app/components/ui/button"
 
 function AddNoteForm() {
 

@@ -3,7 +3,7 @@ import { workspacesData } from './workspacesData';
 import { notesData } from './notesData';
 import Workspace from '../api/models/workspace';
 import Note from '../api/models/note';
-import connectDB from '../api/utils/dbConnect';
+import connectDB from '../../utils/dbConnect';
 
 const runSeed = async () => {
   try {
