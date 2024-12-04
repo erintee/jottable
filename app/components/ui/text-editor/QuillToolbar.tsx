@@ -1,3 +1,5 @@
+import 'react-quill/dist/quill.snow.css';
+
 // Modules object for setting up the Quill editor
 export const modules = {
   toolbar: {

@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from 'react'
-import ReactQuill from 'react-quill';
+import React from 'react'
 import 'react-quill/dist/quill.snow.css';
 import './QuillToolbar.css';
-import QuillToolbar, { modules, formats } from "@/components/ui/text-editor/QuillToolbar"
+import QuillToolbar, { modules, formats } from "@/app/components/ui/text-editor/QuillToolbar"
+
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 interface TextEditorProps {
     value: string;

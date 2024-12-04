@@ -31,15 +31,15 @@ interface NoteInput {
   title: string;
   content: string;
   tags?: string[];
-  isFavourite: boolean;
-  colour: string;
+  isFavourite?: boolean;
+  colour?: string;
 }
 
 interface DataContextType {
   workspaces: Workspace[];
   notes: Note[];
   addWorkspace: (workspace: WorkspaceInput) => void;
-  // addNote: (note: NoteInput) => void;
+  addNote: (note: NoteInput) => void;
   updateNoteCount: (workspaceId: string, newCount: number) => void;
 }
 
@@ -57,38 +57,59 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
         console.error("Error fetching workspaces:", error);
     }
-};
+  };
 
-// Fetch workspaces on load
-useEffect(() => {
-    fetchWorkspaces();
-}, []);
+  // Fetch workspaces on load
+  useEffect(() => {
+      fetchWorkspaces();
+  }, []);
 
-const addWorkspace = async (workspace: WorkspaceInput) => {
-  try {
-    const response = await fetch("/api/workspaces", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(workspace),
-    });
+  // Add a new workspace
+  const addWorkspace = async (workspace: WorkspaceInput) => {
+    try {
+      const response = await fetch("/api/workspaces", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(workspace),
+      });
 
-    if (!response.ok) {
-      throw new Error("Failed to add workspace");
+      if (!response.ok) {
+        throw new Error("Failed to add workspace");
+      }
+
+      const data = await response.json();
+      const savedWorkspace = data.workspace;
+      setWorkspaces((prev) => [...prev, { ...savedWorkspace, noteCount: 0 }]);
+      return { success: true, message: "Workspace added successfully" };
+    } catch (error: any) {
+      console.error("Error adding workspace:", error.message);
+      return { success: false, message: error.message || "An unknown error occurred" };
     }
+  };
 
-    const data = await response.json();
-    const savedWorkspace = data.workspace;
-    setWorkspaces((prev) => [...prev, { ...savedWorkspace, noteCount: 0 }]);
-    return { success: true, message: "Workspace added successfully" };
-  } catch (error: any) {
-    console.error("Error adding workspace:", error.message);
-    return { success: false, message: error.message || "An unknown error occurred" };
-  }
-};
+  // Add a new note
+  const addNote = async (note: NoteInput) => {
+    try {
+      const response = await fetch("/api/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(note),
+      });
 
-// const addNote = (note: NoteInput) => {
-//   setNotes((prev) => [...prev, note]);
-// };
+      if (!response.ok) {
+        throw new Error("Failed to add note");
+      }
+
+      const data = await response.json();
+      const savedNote = data.note;
+      setNotes((prev) => [...prev, { ...savedNote}]);
+      fetchWorkspaces();
+      return { success: true, message: "Note added successfully" };
+    } catch (error: any) {
+      console.error("Error adding note: ", error.message);
+      return { success: false, message: error.message || "An unknown error occured" };
+    }
+  };
 
   // For updating workspace notecount on dashboard after QuickNote add
   const updateNoteCount = (workspaceId: string, newCount: number) => {
@@ -105,7 +126,7 @@ const addWorkspace = async (workspace: WorkspaceInput) => {
         workspaces,
         notes,
         addWorkspace,
-        // addNote,
+        addNote,
         updateNoteCount,
       }}
     >

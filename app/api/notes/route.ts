@@ -28,7 +28,7 @@ export async function POST(request: Request) {
         content: body.content,
         tags: body.tags || [],
         isFavourite: body.isFavourite || false,
-        color: body.colour || "#FFCC00",
+        colour: body.colour || "#FFCC00",
     });
 
     // Save to database
@@ -38,6 +38,7 @@ export async function POST(request: Request) {
         message: "Note added successfully", 
         note: newNote 
     });
+    console.log("Added new note")
   } catch (error) {
       console.error("Error saving note:", error);
       return NextResponse.json({ message: "Error saving note" }, { status: 500 });
